@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+body {
+  background-color: #1a1a1a;
+  color: #00ffcc;
+  font-family: "Press Start 2P", cursive;
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(90deg, #ff0066, #6600ff);
+  border-bottom: 4px solid #00ffcc;
+}
+
+.navbar-brand,
+.nav-link,
+.navbar-text {
+  color: #00ffcc !important;
+  font-size: 12px;
+}
+
+.nav-link:hover {
+  color: #ffcc00 !important;
+}
+
+.navbar-text::before {
+  content: "🕹️ ";
+}
+
+/* Main content */
+.main-content {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.main-content h1 {
+  font-size: 24px;
+  color: #ffcc00;
+  text-shadow: 2px 2px #ff0066;
+}
+
+.main-content p {
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+.btn-retro {
+  font-size: 12px;
+  background-color: #00ffcc;
+  color: #1a1a1a;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 10px #00ffcc;
+}
+
+.btn-retro:hover {
+  background-color: #ffcc00;
+  color: #000;
+  box-shadow: 0 0 20px #ffcc00;
+}
+
+/* Footer */
+footer {
+  background-color: #000000;
+  padding: 20px;
+  text-align: center;
+  color: #00ffcc;
+  font-size: 10px;
+  border-top: 4px solid #ff0066;
+}
