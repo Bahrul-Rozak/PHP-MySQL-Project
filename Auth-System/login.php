@@ -1,3 +1,39 @@
+<?php require("config.php"); ?>
+
+<?php
+// ini itu untuk check submit sayang
+$error = '';
+
+if (isset($_POST['submit'])) {
+    if (empty($_POST['email']) || empty($_POST['password'])) {
+        $error = "Masih ada yang gak di isi sayang :)";
+    } else {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $login = $connect->query("SELECT * FROM users WHERE email = '$email'");
+        $login->execute();
+        $data = $login->fetch(PDO::FETCH_ASSOC);
+
+        // check keberadaan datanya, kalau 1 berarti ada ya
+       // echo $login->rowCount();
+
+        if($login->rowCount() > 0){
+            
+            if(password_verify($password, $data['mypassword'])){
+                echo "logged in";
+            }else{
+                echo "email atau passwordnya ada yang salah nih sayang";
+            }
+            
+        }else{
+            echo "email atau passwordnya ada yang salah nih sayang";
+        }
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,10 +117,15 @@
     <div class="login-box">
         <div class="icon">🔐</div>
         <h2>Login to GameZone</h2>
-        <form>
-            <input type="text" class="form-control" placeholder="👤 Username" required>
-            <input type="password" class="form-control" placeholder="🔑 Password" required>
-            <button type="submit" class="btn-retro">START</button>
+
+        <?php if (!empty($error)): ?>
+            <div style="color: red; margin-bottom: 10px;"><?php echo $error; ?></div>
+        <?php endif; ?>
+
+        <form method="POST" action="login.php">
+            <input type="text" class="form-control" placeholder="💌 Email" name="email">
+            <input type="password" class="form-control" placeholder="🔑 Password" name="password">
+            <button type="submit" class="btn-retro" name="submit">START</button>
         </form>
         <div class="footer-text">
             Don't have an account? <a href="#" style="color:#ffcc00;">Register Now</a>
