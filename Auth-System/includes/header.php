@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -29,15 +33,22 @@
 
                 <!-- Right -->
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">🔐 Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">📝 Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <span class="navbar-text">Player1</span>
-                    </li>
+                    <?php if (isset($_SESSION['username'])): ?>
+                        <li class="nav-item">
+                            <span class="navbar-text">👋 Hi, <?php echo $_SESSION['username']; ?></span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">🚪 Logout</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">🔐 Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register.php">📝 Register</a>
+                        </li>
+                    <?php endif; ?>
+
                 </ul>
             </div>
         </div>

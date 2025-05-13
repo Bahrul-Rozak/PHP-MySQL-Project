@@ -1,4 +1,8 @@
-<?php require("config.php"); ?>
+<?php
+session_start();
+require("config.php");
+
+?>
 
 <?php
 // ini itu untuk check submit sayang
@@ -16,17 +20,20 @@ if (isset($_POST['submit'])) {
         $data = $login->fetch(PDO::FETCH_ASSOC);
 
         // check keberadaan datanya, kalau 1 berarti ada ya
-       // echo $login->rowCount();
+        // echo $login->rowCount();
 
-        if($login->rowCount() > 0){
-            
-            if(password_verify($password, $data['mypassword'])){
-                echo "logged in";
-            }else{
+        if ($login->rowCount() > 0) {
+
+            if (password_verify($password, $data['mypassword'])) {
+                // echo "logged in";
+                $_SESSION['username'] = $data['username'];
+                $_SESSION['email'] = $data['email'];
+
+                header("location: index.php");
+            } else {
                 echo "email atau passwordnya ada yang salah nih sayang";
             }
-            
-        }else{
+        } else {
             echo "email atau passwordnya ada yang salah nih sayang";
         }
     }
