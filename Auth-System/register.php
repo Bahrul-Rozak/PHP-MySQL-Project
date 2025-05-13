@@ -1,3 +1,28 @@
+<?php require("config.php"); ?>
+
+<?php
+$error = '';
+if (isset($_POST['submit'])) {
+    if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])) {
+        $error = "Masih ada yang gak di isi sayang :)";
+    }else{
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        // ini variabel dari file config na...
+        $insert = $connect->prepare("INSERT INTO users(username, email, mypassword) VALUES(:username, :email, :mypassword)");
+
+        $insert->execute([
+            'username' => $username,
+            'email' => $email,
+            'mypassword' => password_hash($password, PASSWORD_DEFAULT)
+        ]);
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,15 +106,19 @@
     <div class="register-box">
         <div class="icon">📝</div>
         <h2>Register to GameZone</h2>
-        <form>
-            <input type="text" class="form-control" placeholder="👤 Username" required>
-            <input type="email" class="form-control" placeholder="📧 Email" required>
-            <input type="password" class="form-control" placeholder="🔑 Password" required>
-            <input type="password" class="form-control" placeholder="🔒 Confirm Password" required>
-            <button type="submit" class="btn-retro">START</button>
+
+        <?php if (!empty($error)): ?>
+            <div style="color: red; margin-bottom: 10px;"><?php echo $error; ?></div>
+        <?php endif; ?>
+
+        <form method="POST" action="register.php">
+            <input type="text" class="form-control" placeholder="👤 Username" name="username">
+            <input type="email" class="form-control" placeholder="📧 Email" name="email" required>
+            <input type="password" class="form-control" placeholder="🔑 Password" name="password">
+            <button type="submit" class="btn-retro" name="submit">START</button>
         </form>
         <div class="footer-text">
-            Already have an account? <a href="#" style="color:#ffcc00;">Login Here</a>
+            Already have an account? <a href="login.php" style="color:#ffcc00;">Login Here</a>
         </div>
     </div>
 
