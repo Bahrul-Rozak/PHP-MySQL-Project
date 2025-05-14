@@ -1,0 +1,57 @@
+/* Warna background ala retro */
+.retro-bg {
+    background: linear-gradient(135deg, #ffb347, #ffcc33);
+    min-height: 100vh;
+    font-family: 'Courier New', Courier, monospace;
+    color: #3b2f2f;
+}
+
+/* Teks dengan gaya retro */
+.retro-text {
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #ffa500;
+}
+
+/* Tombol dengan style retro */
+.retro-btn {
+    background-color: #ff8c00;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.retro-btn:hover {
+    background-color: #ff6500;
+    color: #fff;
+}
+
+/* Table style retro */
+.retro-table thead {
+    background-color: #ff8c00;
+    color: #fff;
+}
+
+.retro-table tbody tr:hover {
+    background-color: #ffd580;
+}
+
+/* Input dan select gaya retro */
+.retro-input {
+    background-color: #fff2cc;
+    border: 2px solid #ff8c00;
+    color: #3b2f2f;
+    font-weight: bold;
+}
+
+.retro-input:focus {
+    border-color: #ff6500;
+    box-shadow: 0 0 5px #ff6500;
+    outline: none;
+}
+
+/* Alert gaya retro */
+.retro-alert {
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #ffa500;
+}
