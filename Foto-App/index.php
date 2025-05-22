@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+include "config.php";
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -9,6 +19,11 @@
 
 <body class="bg-light">
     <div class="container mt-5">
+        <div class="text-end mb-3">
+            <span>Hi, <?= $_SESSION['username']; ?>!</span>
+            <a href="logout.php" class="btn btn-sm btn-danger ms-2">Logout</a>
+        </div>
+
         <h2 class="mb-4 text-center">📁 Gallery App - Upload Image</h2>
 
         <!-- Form Upload -->
@@ -22,7 +37,9 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             <?php
             include "config.php";
-            $result = mysqli_query($conn, "SELECT * FROM images ORDER BY uploaded_at DESC");
+            // $result = mysqli_query($conn, "SELECT * FROM images ORDER BY uploaded_at DESC");
+            $user_id = $_SESSION['user_id'];
+            $result = mysqli_query($conn, "SELECT * FROM images WHERE user_id = $user_id ORDER BY uploaded_at DESC");
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<div class="col">';
                 echo '<div class="card shadow">';
