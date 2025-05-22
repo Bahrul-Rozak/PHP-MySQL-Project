@@ -28,7 +28,8 @@
                 echo '<img src="uploads/' . $row['filename'] . '" class="card-img-top" alt="Image">';
                 echo '<div class="card-body text-center">';
                 echo '<p class="card-text">' . $row['filename'] . '</p>';
-                echo '<a href="edit.php?id=' . $row['id'] . '" class="btn btn-sm btn-warning">Edit</a>';
+                echo '<a href="edit.php?id=' . $row['id'] . '" class="btn btn-sm btn-warning me-2">Edit</a>';
+                echo '<a href="delete.php?id=' . $row['id'] . '" class="btn btn-sm btn-danger" onclick="return confirm(\'Yakin mau hapus gambar ini?\')">Delete</a>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
