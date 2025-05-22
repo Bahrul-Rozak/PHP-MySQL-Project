@@ -28,6 +28,7 @@
                 echo '<img src="uploads/' . $row['filename'] . '" class="card-img-top" alt="Image">';
                 echo '<div class="card-body text-center">';
                 echo '<p class="card-text">' . $row['filename'] . '</p>';
+                echo '<a href="edit.php?id=' . $row['id'] . '" class="btn btn-sm btn-warning">Edit</a>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
