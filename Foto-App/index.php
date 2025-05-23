@@ -26,10 +26,28 @@ include "config.php";
 
         <h2 class="mb-4 text-center">📁 Gallery App - Upload Image</h2>
 
+        <form method="GET" class="mb-3">
+            <select name="filter" class="form-select w-auto d-inline-block">
+                <option value="">🔍 All Categories</option>
+                <option value="Nature">🌿 Nature</option>
+                <option value="Technology">💻 Technology</option>
+                <option value="People">🧑 People</option>
+                <option value="Other">📁 Other</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+
+
         <!-- Form Upload -->
         <form action="upload.php" method="POST" enctype="multipart/form-data" class="mb-4">
             <div class="input-group">
                 <input type="file" name="images[]" class="form-control" multiple required>
+                <select name="category" class="form-select mb-2" required>
+                    <option value="Nature">🌿 Nature</option>
+                    <option value="Technology">💻 Technology</option>
+                    <option value="People">🧑 People</option>
+                    <option value="Other">📁 Other</option>
+                </select>
                 <button type="submit" name="upload" class="btn btn-success">Upload</button>
             </div>
         </form>
@@ -39,12 +57,22 @@ include "config.php";
             include "config.php";
             // $result = mysqli_query($conn, "SELECT * FROM images ORDER BY uploaded_at DESC");
             $user_id = $_SESSION['user_id'];
-            $result = mysqli_query($conn, "SELECT * FROM images WHERE user_id = $user_id ORDER BY uploaded_at DESC");
+           //  $result = mysqli_query($conn, "SELECT * FROM images WHERE user_id = $user_id ORDER BY uploaded_at DESC");
+            $filter = isset($_GET['filter']) ? mysqli_real_escape_string($conn, $_GET['filter']) : '';
+
+            if ($filter != '') {
+                $query = "SELECT * FROM images WHERE user_id = $user_id AND category = '$filter' ORDER BY id DESC";
+            } else {
+                $query = "SELECT * FROM images WHERE user_id = $user_id ORDER BY id DESC";
+            }
+
+            $result = mysqli_query($conn, $query);
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<div class="col">';
                 echo '<div class="card shadow">';
                 // echo '<img src="uploads/' . $row['filename'] . '" class="card-img-top" alt="Image">';
                 echo '<img src="uploads/' . $row['filename'] . '" class="img-thumbnail preview" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#imageModal" data-img="uploads/' . $row['filename'] . '">';
+                echo '<p class="text-center text-muted small mt-3">'.$row['category'].'</p>';
                 echo '<div class="card-body text-center">';
                 echo '<p class="card-text text-truncate">' . $row['filename'] . '</p>';
                 echo '<a href="edit.php?id=' . $row['id'] . '" class="btn btn-sm btn-warning me-2">Edit</a>';
@@ -81,8 +109,8 @@ include "config.php";
         });
     </script>
 
-<!-- Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
