@@ -29,8 +29,8 @@ include "config.php";
         <!-- Form Upload -->
         <form action="upload.php" method="POST" enctype="multipart/form-data" class="mb-4">
             <div class="input-group">
-                <input type="file" name="image" class="form-control" required>
-                <button type="submit" name="upload" class="btn btn-primary">Upload</button>
+                <input type="file" name="images[]" class="form-control" multiple required>
+                <button type="submit" name="upload" class="btn btn-success">Upload</button>
             </div>
         </form>
 
