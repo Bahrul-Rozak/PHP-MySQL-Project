@@ -43,7 +43,8 @@ include "config.php";
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<div class="col">';
                 echo '<div class="card shadow">';
-                echo '<img src="uploads/' . $row['filename'] . '" class="card-img-top" alt="Image">';
+                // echo '<img src="uploads/' . $row['filename'] . '" class="card-img-top" alt="Image">';
+                echo '<img src="uploads/' . $row['filename'] . '" class="img-thumbnail preview" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#imageModal" data-img="uploads/' . $row['filename'] . '">';
                 echo '<div class="card-body text-center">';
                 echo '<p class="card-text text-truncate">' . $row['filename'] . '</p>';
                 echo '<a href="edit.php?id=' . $row['id'] . '" class="btn btn-sm btn-warning me-2">Edit</a>';
@@ -56,6 +57,34 @@ include "config.php";
         </div>
 
     </div>
+
+    <!-- Modal Preview -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark">
+                <div class="modal-body text-center">
+                    <img src="" id="modalImage" class="img-fluid rounded" alt="Preview">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const previewImages = document.querySelectorAll('.preview');
+        const modalImage = document.getElementById('modalImage');
+
+        previewImages.forEach(img => {
+            img.addEventListener('click', () => {
+                const src = img.getAttribute('data-img');
+                modalImage.src = src;
+            });
+        });
+    </script>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 
 </html>
