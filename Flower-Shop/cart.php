@@ -88,7 +88,7 @@ if (isset($_GET['hapus'])) {
                         $total += $subtotal;
                     ?>
                         <tr>
-                            <td><img src="img/<?php echo $item['gambar']; ?>" width="80"></td>
+                            <td><img src="uploads/<?php echo $item['gambar']; ?>" width="80"></td>
                             <td><?php echo htmlspecialchars($item['nama']); ?></td>
                             <td>Rp <?php echo number_format($item['harga'], 0, ',', '.'); ?></td>
                             <td><?php echo $item['jumlah']; ?></td>

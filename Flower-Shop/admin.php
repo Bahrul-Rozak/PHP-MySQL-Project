@@ -37,7 +37,7 @@ if (isset($_POST['tambah_produk'])) {
 
         if (in_array($file_ext, $allowed_ext)) {
             $new_name = uniqid('produk_') . '.' . $file_ext;
-            $upload_dir = 'img/';
+            $upload_dir = 'uploads/';
             $upload_path = $upload_dir . $new_name;
 
             if (move_uploaded_file($file_tmp, $upload_path)) {
@@ -112,7 +112,7 @@ if (isset($_POST['tambah_produk'])) {
         <tbody>
         <?php while ($p = mysqli_fetch_assoc($produk_list)): ?>
             <tr>
-                <td><img src="img/<?php echo $p['gambar']; ?>" width="80"></td>
+                <td><img src="uploads/<?php echo $p['gambar']; ?>" width="80"></td>
                 <td><?php echo htmlspecialchars($p['nama']); ?></td>
                 <td>Rp <?php echo number_format($p['harga'],0,',','.'); ?></td>
                 <td>

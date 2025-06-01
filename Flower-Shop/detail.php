@@ -32,7 +32,7 @@ if (!$produk) {
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-6">
-            <img src="img/<?php echo $produk['gambar']; ?>" class="img-fluid rounded shadow">
+            <img src="uploads/<?php echo $produk['gambar']; ?>" class="img-fluid rounded shadow">
         </div>
         <div class="col-md-6">
             <h2><?php echo htmlspecialchars($produk['nama']); ?></h2>

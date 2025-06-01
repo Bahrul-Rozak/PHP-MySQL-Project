@@ -21,7 +21,7 @@
         ?>
             <div class="col-md-3 mb-4">
                 <div class="card">
-                    <img src="img/<?php echo $row['gambar']; ?>" class="card-img-top">
+                    <img src="uploads/<?php echo $row['gambar']; ?>" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $row['nama']; ?></h5>
                         <p>Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></p>
