@@ -1,0 +1,19 @@
+body {
+    background: linear-gradient(to right, #ffe6f0, #fff0f5);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar {
+    background-color: #ff66b2;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+}
+
+.footer {
+    background-color: #ffb6c1;
+    padding: 20px;
+    text-align: center;
+}
