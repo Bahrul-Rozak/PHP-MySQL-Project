@@ -38,8 +38,12 @@ if ($result->num_rows > 0) {
 ?>
         <div class="post">
             <div class="post-header">
-                <img src="uploads/<?= htmlspecialchars($post['profile_pic']) ?>" alt="Profile" />
-                <strong><?= htmlspecialchars($post['username']) ?></strong>
+                <a href="profile.php?user=<?= $post['user_id'] ?>">
+                    <img src="uploads/<?= htmlspecialchars($post['profile_pic']) ?>" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" />
+                </a>
+                <a href="profile.php?user=<?= $post['user_id'] ?>" class="text-dark text-decoration-none fw-bold ms-2">
+                    <?= htmlspecialchars($post['username']) ?>
+                </a>
             </div>
             <div class="post-image">
                 <img src="uploads/<?= htmlspecialchars($post['image']) ?>" alt="Post Image" />
