@@ -209,6 +209,9 @@ $result = $conn->query($sql);
                 <a href="logout.php" class="btn btn-sm btn-danger">Logout</a>
                 <a href="edit_profile.php" class="btn btn-sm btn-info">Edit Profile</a>
             </div>
+
+
+
             <?php while ($user = $result->fetch_assoc()):
                 $last_seen = strtotime($user['last_seen']);
                 $status = (time() - $last_seen) < 60 ? 'Online' : 'Offline';
@@ -227,6 +230,10 @@ $result = $conn->query($sql);
                     <div class="last-seen"><?= $status ?></div>
                 </div>
             <?php endwhile; ?>
+
+            <div class="p-2">
+                <input type="text" class="form-control" id="searchInput" placeholder="🔍 Cari teman...">
+            </div>
 
             <div class="user-list" id="userList">
                 <?php while ($user = $result->fetch_assoc()):
@@ -331,6 +338,19 @@ $result = $conn->query($sql);
                 });
         }
     </script>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function() {
+            let query = this.value;
+
+            fetch('search_user.php?q=' + encodeURIComponent(query))
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById('userList').innerHTML = data;
+                });
+        });
+    </script>
+
 </body>
 
 </html>
