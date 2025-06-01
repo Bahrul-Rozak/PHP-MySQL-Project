@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header('Location: admin_login.php');
+    exit;
+}
+
 include 'config.php';
 
 // **NOTE: Ini admin sederhana tanpa login, untuk demo doang.**
@@ -67,6 +73,8 @@ if (isset($_POST['tambah_produk'])) {
 
 <div class="container mt-4">
     <h2>Admin Panel 🌸</h2>
+    <a href="admin_logout.php" class="btn btn-danger btn-sm mt-3">Logout</a>
+
 
     <?php if (isset($error)): ?>
         <div class="alert alert-danger"><?php echo $error; ?></div>
