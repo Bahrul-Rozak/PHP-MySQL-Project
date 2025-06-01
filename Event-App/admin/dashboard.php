@@ -74,6 +74,7 @@ $result = $conn->query($sql);
 
             <div class="mb-3">
                 <a href="add_event.php" class="btn btn-primary">➕ Tambah Event Baru</a>
+                <a href="tickets.php" class="btn btn-secondary">Lihat Payment</a>
             </div>
 
             <div class="table-responsive">
